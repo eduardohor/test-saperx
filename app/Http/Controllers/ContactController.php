@@ -31,4 +31,13 @@ class ContactController extends Controller
 		return response()->json(['contact' => $contact], 201);
 		
 	}
+
+	public function show($id)
+	{
+		if (!$contact = $this->contact->find($id)) {
+			return response()->json(['message' => 'Contact not found!'], 404);
+		}
+
+		return response()->json(['contact' => $contact], 200);
+	}
 }
