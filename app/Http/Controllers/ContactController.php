@@ -68,6 +68,17 @@ class ContactController extends Controller
 
 		$contact->save();
 
-		return response()->json(['message' => 'Contact updated successfully', 'contact' => $contact], 200);
+		return response()->json(['message' => 'Contact updated successfully!', 'contact' => $contact], 200);
+	}
+
+	public function destroy($id)
+	{
+		if (!$contact = $this->contact->find($id)) {
+			return response()->json(['message' => 'Contact not found!'], 404);
+		}
+
+		$contact->delete();
+
+		return response()->json(['message' => 'Successfully deleted contact!'], 200);
 	}
 }
