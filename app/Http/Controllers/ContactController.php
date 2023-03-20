@@ -17,7 +17,9 @@ class ContactController extends Controller
 
   public function index()
 	{
-		return 'Index';
+		$contacts = $this->contact->orderByDesc('created_at')->get();
+
+		return response()->json($contacts, 200);
 	}
 
 	public function store(ContactRequest $request)
