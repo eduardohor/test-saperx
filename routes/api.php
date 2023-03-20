@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::apiResource('contact', ContactController::class);
+Route::apiResource('contacts', ContactController::class);
 
