@@ -53,7 +53,7 @@ class ContactControllerTest extends TestCase
 	 *
 	 * @return void
 	 */
-	public function test_get_single_contacts_endpoint()
+	public function test_get_single_contact_endpoint()
 	{
 		$contact = Contact::factory(1)->createOne();
 
@@ -106,5 +106,55 @@ class ContactControllerTest extends TestCase
 				'contact.telephone' => $contact['telephone'],
 			]);
 		});
+	}
+
+	/**
+	 * A basic feature test example.
+	 *
+	 * @return void
+	 */
+	public function test_put_contacts_endpoint()
+	{
+
+		$contact = Contact::factory(1)->createOne();
+
+		$contactUpdate = [
+			'name' => 'Teste Update',
+			'email' => 'teste@exemplo.com',
+			'date_of_birth' => '1995-08-08',
+			'cpf' => '12345678911',
+			'telephone' => '99972632123',
+		];
+
+		$response = $this->putJson('/api/contacts/' . $contact->id, $contactUpdate);
+
+		$response->assertStatus(200);
+
+		$response->assertJson(function (AssertableJson $json) use ($contactUpdate) {
+
+			$json->hasAll(['contact.id', 'contact.name', 'contact.email', 'contact.date_of_birth', 'contact.telephone'])->etc();
+
+			$json->whereAll([
+				'contact.name' => $contactUpdate['name'],
+				'contact.email' => $contactUpdate['email'],
+				'contact.date_of_birth' => $contactUpdate['date_of_birth'],
+				'contact.telephone' => $contactUpdate['telephone'],
+			]);
+		});
+	}
+
+	/**
+	 * A basic feature test example.
+	 *
+	 * @return void
+	 */
+	public function test_delete_contact_endpoint()
+	{
+
+		$contact = Contact::factory(1)->createOne();
+
+		$response = $this->deleteJson('/api/contacts/' . $contact->id);
+
+		$response->assertStatus(204);
 	}
 }

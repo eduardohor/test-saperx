@@ -79,6 +79,6 @@ class ContactController extends Controller
 
 		$contact->delete();
 
-		return response()->json(['message' => 'Successfully deleted contact!'], 200);
+		return response()->json(['message' => 'Successfully deleted contact!'], 204);
 	}
 }
