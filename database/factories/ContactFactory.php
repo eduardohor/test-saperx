@@ -20,7 +20,7 @@ class ContactFactory extends Factory
 					'name' => $this->faker->name(),
 					'email' => $this->faker->unique()->safeEmail(),
 					'date_of_birth' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-					'cpf' =>  $this->faker->cpf,
+					'cpf' =>  $this->faker->cpf(false),
 					'telephone' => $this->faker->cellphoneNumber
         ];
     }
