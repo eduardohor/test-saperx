@@ -28,7 +28,7 @@ composer install
 cp .env.example .env
 ```
 
-- Alterar os dados de banco no arquivo .env para os referente ao seu banco local
+- Com um editor altere os dados de banco no arquivo .env para os referente ao seu banco local
 
 - Logo depois execute o comando abaixo para gerar uma nova chave
 ```PHP
