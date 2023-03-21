@@ -113,6 +113,23 @@ class ContactControllerTest extends TestCase
 	 *
 	 * @return void
 	 */
+	public function test_post_contacts_should_validate_when_try_create_a_invalid_contact()
+	{
+		$response = $this->postJson('/api/contacts', []);
+
+		$response->assertStatus(422);
+
+		$response->assertJson(function (AssertableJson $json) {
+
+			$json->hasAll(['message', 'errors']);
+		});
+	}
+
+	/**
+	 * A basic feature test example.
+	 *
+	 * @return void
+	 */
 	public function test_put_contacts_endpoint()
 	{
 
